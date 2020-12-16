@@ -22,7 +22,7 @@ class Filters extends Component {
       .then(data => {
         this.setState({
           genres: data.genres
-        });
+        }); console.log("GENRE",data.genres)
       });
   };
 
