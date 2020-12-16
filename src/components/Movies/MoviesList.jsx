@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import MovieItem from "./MovieItem";
 import { API_URL, API_KEY_3 } from "../../api/api";
 
-export default class MovieList extends Component {
+class MoviesList extends Component {
   constructor() {
     super();
 
@@ -69,3 +69,5 @@ export default class MovieList extends Component {
     );
   }
 }
+
+export default MoviesList;
