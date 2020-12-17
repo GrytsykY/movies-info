@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Filters from "../../Filters/Filters";
-import MoviesList from "../../UIComponents/Image";
+import MoviesList from "../../Movies/MoviesList";
 
 class MoviesPage extends Component {
   constructor() {
     super();
-
+    
     this.initialState = {
       filters: {
         sort_by: "vote_average.desc",

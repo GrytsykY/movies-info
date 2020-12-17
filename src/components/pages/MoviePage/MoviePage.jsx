@@ -7,7 +7,7 @@ import Loader from "../../UIComponents/Loader";
 
 class MoviePage extends Component {
   constructor() {
-    super();
+    super();console.log("MoviePAGE")
     this.state = {
       movieDetails: [],
       isLoading: true

@@ -1,3 +1,5 @@
+import queryString from "query-string";
+
 export const API_URL = "https://api.themoviedb.org/3";
 
 export const API_KEY_3 = "4237669ebd35e8010beee2f55fd45546";
@@ -16,7 +18,7 @@ export const API_KEY_4 =
           }
         })
         .then(data => {
-          resolve(data);
+          resolve(data); 
         })
         .catch(response => {
           response.json().then(error => {

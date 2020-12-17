@@ -1,73 +1,26 @@
-import React, { Component } from 'react';
+import React from "react";
 import MovieItem from "./MovieItem";
-import { API_URL, API_KEY_3 } from "../../api/api";
+import PropTypes from "prop-types";
+import MoviesHOC from "./MoviesHOC";
 
-class MoviesList extends Component {
-  constructor() {
-    super();
+const MoviesList = ({ movies }) => (
+  <div className="row">
+    {movies.map(movie => {
+      return (
+        <div key={movie.id} className="col-6 mb-4">
+          <MovieItem item={movie} />
+        </div>
+      );
+    })}
+  </div>
+);
 
-    this.state = {
-      movies: []
-    };
-  };
+MoviesList.defaultProps = {
+  movies: []
+};
 
-  getMovies = (filters,page) =>{
-    const {sort_by, primary_release_year, with_genres} = filters;
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru-RU&sort_by=${sort_by}&page=${page}&primary_release_year=${primary_release_year}&with_genres=${with_genres}`;
-    fetch(link)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        this.setState({
-          movies: data.results
-        });
-      });
-  };
+MoviesList.propTypes = {
+  movies: PropTypes.array.isRequired
+};
 
-  componentDidMount() {
-    this.getMovies(this.props.filters, this.props.page);
-  };
-
-  // componentWillReceiveProps(nextProps){
-  //   console.log("props", this.props, "nextProps", nextProps);
-  //   if(nextProps.filters.sort_by !== this.props.filters.sort_by){
-  //     this.getMovies(nextProps.filters);
-  //   }
-  // };
-
-  componentDidUpdate(prevProps){
-    if(this.props.filters.sort_by !== prevProps.filters.sort_by){
-      this.props.onChangePage(1);
-      this.getMovies(this.props.filters, 1);
-    }
-    if(this.props.filters.primary_release_year !== prevProps.filters.primary_release_year){
-      this.props.onChangePage(1);
-      this.getMovies(this.props.filters, 1)
-    }
-    if(this.props.filters.with_genres !== prevProps.filters.with_genres){
-      this.props.onChangePage(1);
-      this.getMovies(this.props.filters, 1)
-    }
-    if(this.props.page !== prevProps.page){
-      this.getMovies(this.props.filters, this.props.page)
-    }
-  };
-
-  render() {
-    const { movies } = this.state;
-    return (
-      <div className="row">
-        {movies.map(movie => {
-          return (
-            <div key={movie.id} className="col-6 mb-4">
-              <MovieItem item={movie} />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
-
-export default MoviesList;
+export default MoviesHOC(MoviesList);

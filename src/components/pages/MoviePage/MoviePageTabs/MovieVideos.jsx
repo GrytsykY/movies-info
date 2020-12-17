@@ -6,7 +6,7 @@ import Loader from "../../../UIComponents/Loader";
 class MovieVideos extends Component {
   constructor() {
     super();
-
+    
     this.state = {
       movieVideos: [],
       isLoading: true

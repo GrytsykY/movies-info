@@ -1,4 +1,5 @@
-import React, { Component } from 'react';import Header from "./Header/Header";
+import React, { Component } from 'react';
+import Header from "./Header/Header";
 import CallApi from "../api/api";
 import MoviesPage from "./pages/MoviesPage/MoviesPage";
 import MoviePage from "./pages/MoviePage/MoviePage";
@@ -71,7 +72,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const {
       user,
       session_id,

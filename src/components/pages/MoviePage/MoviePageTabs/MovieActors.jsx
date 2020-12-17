@@ -7,7 +7,7 @@ import Loader from "../../../UIComponents/Loader";
 class MovieActors extends Component {
   constructor() {
     super();
-
+    console.log("MovieACTOR")
     this.state = {
       movieActors: [],
       isLoading: true
@@ -27,7 +27,7 @@ class MovieActors extends Component {
   }
 
   render() {
-    const { movieActors, isLoading } = this.state;
+    const { movieActors, isLoading } = this.state;{console.log("MovieACTOR",movieActors)}
     return isLoading ? (
       <Loader />
     ) : (
@@ -40,7 +40,7 @@ class MovieActors extends Component {
               alt=""
               path={item.profile_path}
               width="150px"
-              height="200px"
+              height="200px" 
             />
           )
       )
