@@ -12,7 +12,7 @@ export default class Pagination extends React.PureComponent {
     const { onChangePagination, page, total_pages } = this.props;
     return (
       <div>
-        <div className="btn-group">
+        <div className="btn-group btn-pagination">
           <button
             type="button"
             className="btn btn-light mr-2"
@@ -29,8 +29,8 @@ export default class Pagination extends React.PureComponent {
             Вперед
           </button>
         </div>
-        <div>
-          {page} of {total_pages}
+        <div className="page-pagination">
+          <b>{page} из {total_pages}</b>
         </div>
       </div>
     );

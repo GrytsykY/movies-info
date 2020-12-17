@@ -22,7 +22,7 @@ class MovieItem extends React.PureComponent {
           </div>
           <div className="card-movie__description">
             <div className="card-movie__icons">
-              <Progressbar vote_average={item.vote_average} />
+              <Progressbar vote_average={item.vote_average} />{console.log("EVEREG",item)}
               <Favorite movieId={item.id} />
               <WillWatch movieId={item.id} />
             </div>
