@@ -7,7 +7,7 @@ import Loader from "../../UIComponents/Loader";
 
 class MoviePage extends Component {
   constructor() {
-    super();console.log("MoviePAGE")
+    super(); console.log("MoviePAGE")
     this.state = {
       movieDetails: [],
       isLoading: true
@@ -31,26 +31,35 @@ class MoviePage extends Component {
 
   render() {
     const { movieDetails, isLoading } = this.state;
+    const imgUrl = `https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`;
+
     return (
-      <div className="container">
+      <div>
         {isLoading ? (
           <Loader />
         ) : (
-          <React.Fragment>
-            <div className="row justify-content-center mt-4">
-              <div className="col-3">
-                <Image path={movieDetails.poster_path} width="100%" alt="" />
-              </div>
-              <div className="col-6">
-                <MovieOverview
-                  title={movieDetails.title}
-                  overview={movieDetails.overview}
-                />
-              </div>
-            </div>
-            <MoviePageTabs movieDetails={movieDetails} />
-          </React.Fragment>
-        )}
+            <React.Fragment>
+              <section
+                className="movie-overview"
+                style={{ backgroundImage: `url(${imgUrl})` }}
+              >
+                <div className="container">
+                  <div className="row justify-content-center mt-4">
+                    <div className="col-4">
+                      <Image path={movieDetails.poster_path} width="100%" alt="" />
+                    </div>
+                    <div className="col-6">
+                      <MovieOverview
+                        title={movieDetails.title}
+                        overview={movieDetails.overview}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <MoviePageTabs movieDetails={movieDetails} />
+            </React.Fragment>
+          )}
       </div>
     );
   }
