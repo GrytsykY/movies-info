@@ -1,67 +1,77 @@
 import React, { Component } from 'react';
-import Filters from './Filters/Filters';
-import MovieList from './Movies/MoviesList';
+import Filters from "../../Filters/Filters";
+import MoviesList from "../../Movies/MoviesList";
 
-class App extends Component {
+class MoviesPage extends Component {
   constructor() {
     super();
-
+    
     this.initialState = {
       filters: {
         sort_by: "vote_average.desc",
         primary_release_year: "",
         with_genres: []
       },
-      page: 1
+      pagination: {
+        page: 1,
+        total_pages: 1
+      }
     };
     this.state = { ...this.initialState };
-  };
+  }
 
   onChangeFilter = event => {
-    const name = event.target.name,
-      value = event.target.value;
+    const name = event.target.name;
+    const value = event.target.value;
     this.setState(prevState => ({
       filters: {
         ...prevState.filters,
         [name]: value
       }
-    }))
+    }));
   };
 
-  onChangePage = page => {
-    this.setState({
-      page
-    })
+  onChangePagination = (
+    page,
+    total_pages = this.state.pagination.total_pages
+  ) => {
+    this.setState(prevState => ({
+      pagination: {
+        ...prevState.pagination,
+        page,
+        total_pages
+      }
+    }));
   };
 
-  onReset = event => {
+  onReset = () => {
     this.setState({ ...this.initialState });
   };
 
   render() {
-    const { filters, page } = this.state;
+    const { filters, pagination } = this.state;
     return (
       <div className="container">
-        <div className="row mt-2">
+        <div className="row mt-4">
           <div className="col-4">
-            <div className="card" style={{ width: "100%" }}>
+            <div className="card">
               <div className="card-body">
                 <h3>Фильтры:</h3>
                 <Filters
                   filters={filters}
-                  page={page}
+                  pagination={pagination}
                   onChangeFilter={this.onChangeFilter}
-                  onChangePage={this.onChangePage}
+                  onChangePagination={this.onChangePagination}
                   onReset={this.onReset}
                 />
               </div>
             </div>
           </div>
           <div className="col-8">
-            <MovieList
+            <MoviesList
               filters={filters}
-              page={page}
-              onChangePage={this.onChangePage}
+              pagination={pagination}
+              onChangePagination={this.onChangePagination}
             />
           </div>
         </div>
@@ -70,4 +80,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default MoviesPage;
